@@ -147,17 +147,6 @@ This project evaluates the trustworthiness of large language models based on the
 
 ---
 
-##  CLI Usage Example
-
-While Jupyter notebooks are used for structured evaluation, you may also run quick model inference via a script:
-
-```bash
-python infer.py --model navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1 --prompt "Explain recursion in Python."
-```
-
-Make sure `infer.py` loads the model via `transformers` and wraps `PeftModel` for adapters.
-
----
 
 ##  Reproducibility
 
