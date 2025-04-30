@@ -19,7 +19,7 @@ This model was trained with SFT.
 - **added_tokens.json**  
 - **special_tokens_map.json, tokenizer*_*.json**  
 - **training_args.bin**  
-- **runs/** (training logs & checkpoints)
+
 
 ## What’s Happening Here
 
