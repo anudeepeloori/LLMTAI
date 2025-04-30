@@ -1,53 +1,58 @@
 
 # gemma2-2B-thinking-reasoning-model-V1
 
-This folder holds the LoRA adapter for the Gemma2 2-billion-parameter model, tuned on reasoning datasets.
----
-base_model: google/gemma-2b-it
-library_name: transformers
-model_name: gemma2-2B-thinking-reasoning-model-V1
+LoRA fine-tuned version of Google's Gemma 2B model, enhanced for lightweight logical reasoning tasks.
 
 ---
 
-## Training procedure
+## Model Information
+ 
+- **Fine-Tuned Model**: `navaneeth45/gemma2-2B-thinking-reasoning-model-V1`  
+- **Library**: `transformers`
 
-This model was trained with SFT.
+---
 
 ## Contents
 
-- **adapter_config.json, adapter_model.safetensors**  
-- **added_tokens.json**  
-- **special_tokens_map.json, tokenizer*_*.json**  
-- **training_args.bin**  
+- `adapter_config.json`, `adapter_model.safetensors`  
+- `tokenizer_config.json`, `tokenizer.json`, `vocab.json`  
+- `added_tokens.json`, `merges.txt`, `special_tokens_map.json`  
+- `training_args.bin`
 
+---
 
-## What’s Happening Here
+## Overview
 
-- **Base**: Gemma2-2B, a compact LLM optimized for low-resource inference.
-- **Objective**: Improve its chain-of-thought (CoT) performance on logic puzzles.
-- **Data**: Standard CoT datasets plus synthetic tasks we generated via templating.
+- **LoRA Adapter**: Injects reasoning capacity into a compact, efficient 2B parameter model.
+- **Training Data**: Blend of reasoning-based questions and structured prompts from reasoning-heavy tasks (ServiceNow, math problems, etc.).
+- **Goal**: Offer reasoning capability in scenarios with limited computational resources.
+- **Performance**: Provides accurate, concise step-by-step answers while maintaining efficiency.
 
+---
 
+## Training Procedure
 
-### Framework versions
+Supervised fine-tuning (SFT) using the LoRA method for reasoning adaptability in small-scale deployments.
 
-- TRL: 0.16.0
-- Transformers: 4.50.2
-- Pytorch: 2.6.0+cu124
-- Datasets: 3.5.0
-- Tokenizers: 0.21.1
+### Framework Versions
 
-## Citations
+- TRL: 0.15.2  
+- Transformers: 4.48.3  
+- PyTorch: 2.5.1+cu124  
+- Datasets: 3.3.2  
+- Tokenizers: 0.21.0
 
-Cite TRL as:
-    
+---
+
+## Citation
+
 ```bibtex
 @misc{vonwerra2022trl,
-	title        = {{TRL: Transformer Reinforcement Learning}},
-	author       = {Leandro von Werra and Younes Belkada and Lewis Tunstall and Edward Beeching and Tristan Thrush and Nathan Lambert and Shengyi Huang and Kashif Rasul and Quentin Gallouédec},
-	year         = 2020,
-	journal      = {GitHub repository},
-	publisher    = {GitHub},
-	howpublished = {\url{https://github.com/huggingface/trl}}
+  title        = {{TRL: Transformer Reinforcement Learning}},
+  author       = {Leandro von Werra and Younes Belkada and Lewis Tunstall and Edward Beeching and Tristan Thrush and Nathan Lambert and Shengyi Huang and Kashif Rasul and Quentin Gallouédec},
+  year         = 2020,
+  journal      = {GitHub repository},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/huggingface/trl}}
 }
 ```
