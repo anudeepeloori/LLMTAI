@@ -1,34 +1,30 @@
+# Qwen2.5-1.5B-thinking-reasoning-model-V1
+
+Fine-tuned LoRA adapter for the Qwen2.5 1.5B model, targeting logical reasoning tasks.
 ---
 base_model: Qwen/Qwen2.5-1.5B-Instruct
 library_name: transformers
 model_name: Qwen2.5-1.5B-thinking-reasoning-model-V1
-tags:
-- generated_from_trainer
-- trl
-- sft
-licence: license
----
 
-# Model Card for Qwen2.5-1.5B-thinking-reasoning-model-V1
 
-This model is a fine-tuned version of [Qwen/Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct).
-It has been trained using [TRL](https://github.com/huggingface/trl).
 
-## Quick start
+## Contents
 
-```python
-from transformers import pipeline
+- **adapter_config.json, adapter_model.safetensors**  
+- **added_tokens.json, merges.txt, special_tokens_map.json**  
+- **tokenizer_config.json, tokenizer.json, vocab.json**  
+- **training_args.bin**  
+- **runs/**
 
-question = "If you had a time machine, but could only go to the past or the future once and never return, which would you choose and why?"
-generator = pipeline("text-generation", model="navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1", device="cuda")
-output = generator([{"role": "user", "content": question}], max_new_tokens=128, return_full_text=False)[0]
-print(output["generated_text"])
-```
+## What’s Happening Here
+
+- **Adapter**: Injects ~8M parameters into the base Qwen2.5.  
+- **Training**: Uses mixed CoT + domain-specific prompts.  
+- **Outcome**: Better step-by-step answers while preserving base fluency.
+
+
 
 ## Training procedure
-
- 
-
 
 This model was trained with SFT.
 
@@ -41,7 +37,6 @@ This model was trained with SFT.
 - Tokenizers: 0.21.0
 
 ## Citations
-
 
 
 Cite TRL as:
