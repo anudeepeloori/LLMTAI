@@ -4,6 +4,9 @@ Team Members:
 2. Navaneeth Rajarapu,
 3. Satya Narayana
 
+Objective:
+
+This project aims to fine-tune an open-source LLM on datasets that combine coding and reasoning tasks to improve its problem-solving abilities. We hypothesize that incorporating reasoning capabilities will enhance performance not only in reasoning-specific tasks but also in code understanding, debugging, and general inference.
 
 
 How to run:
@@ -11,18 +14,47 @@ How to run:
 Steps to follow for inferencing model.
 1. Load the model using HuggingFace's pipeline in text generation mode.
 2. Specify the model name.
-## Quick start
 
-```python
-from transformers import pipeline
+Project Structure
 
-question = "If you had a time machine, but could only go to the past or the future once and never return, which would you choose and why?"
-generator = pipeline("text-generation", model="navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V0", device="cuda")
-output = generator([{"role": "user", "content": question}], max_new_tokens=128, return_full_text=False)[0]
-print(output["generated_text"])
-```
+1. Model_Testing.ipynb
+Function: Loads and tests different LLMs (navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1, navaneeth45/code-reason-tuned-llama-3.1-8b and navaneeth45/gemma2-2B-thinking-reasoning-model-V1).
 
-Alternately you can directly run all the cells in inference.ipynb and change the prompts if needed.
+Inputs: Text prompts with reasoning or coding context.
+
+Outputs: Model-generated responses.
+
+Instructions to Run:
+
+Install dependencies (transformers, torch, datasets).
+
+Choose a model from Hugging Face (e.g., 1. navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1 2. navaneeth45/code-reason-tuned-llama-3.1-8b  3. navaneeth45/gemma2-2B-thinking-reasoning-model-V1).
+
+Run cells sequentially to generate outputs for evaluation.
+
+2. Evaluation_and_testing_modified.ipynb
+Function: Compares the outputs of various models using reasoning metrics and trustworthiness tests.
+
+Datasets Used:
+
+ServiceNow V1 Subset: Diverse reasoning tasks.
+
+Stereoset: For fairness and bias analysis.
+
+Evaluation Metrics:
+
+Robustness (accuracy across diverse prompts)
+
+Bias (Stereoset score)
+
+Reliability (performance consistency)
+
+Instructions to Run:
+
+Ensure the output generations are available.
+
+Run cells to compute scores and compare models.
+
 
 
 ---
