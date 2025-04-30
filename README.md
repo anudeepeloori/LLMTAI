@@ -66,7 +66,104 @@ To explore each model:
 
 This structure ensures clean isolation between different model versions and makes the repository easy to explore and maintain so we did in this way.
 
+---
 
+## 🔧 How the Model Was Developed
+
+Each of the three models in this repository was fine-tuned using the LoRA (Low-Rank Adaptation) method on top of an open-source base model. The key stages were:
+
+1. **Data Preparation**  
+   Curated a mix of reasoning-heavy datasets and domain-specific tasks (e.g., ServiceNow prompts, coding tasks, Stereoset bias tests).
+
+2. **Training Setup**  
+   Used Hugging Face’s TRL library with LoRA configuration to inject learnable parameters without modifying the full model.
+
+3. **Model-Specific Ratios**  
+   - Qwen: Focused on reasoning-first training
+   - LLaMA: 1:1 ratio of coding and reasoning samples
+   - Gemma: Prioritized reasoning prompts for lightweight deployment
+
+---
+
+## How to Understand the Files in Each Branch
+
+Each model has its own GitHub branch and includes the following components:
+
+- `adapter_model.safetensors`: The fine-tuned adapter weights for LoRA
+- `adapter_config.json`: Configuration used to apply the adapter
+- `tokenizer_config.json`, `tokenizer.json`, `vocab.json`: Tokenizer definitions matching the base model
+- `training_args.bin`: Metadata about the training run (batch size, learning rate, etc.)
+
+### How to Use:
+1. Clone the repository and switch to the desired branch:
+   ```bash
+   git clone https://github.com/yourusername/yourrepo.git
+   cd yourrepo
+   git checkout Qwen2.5-1.5B-thinking-reasoning-model-V1
+   ```
+2. Load the model in your script using the `peft` library:
+   ```python
+   from transformers import AutoTokenizer, AutoModelForCausalLM
+   from peft import PeftModel
+
+   model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-1.5B-Instruct")
+   model = PeftModel.from_pretrained(model, "path/to/adapter_model")
+   tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-1.5B-Instruct")
+   ```
+
+3. Run inference using the loaded model as usual.
+
+---
+
+This structure applies to:
+- `navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1`
+- `navaneeth45/code-reason-tuned-llama-3.1-8b`
+- `navaneeth45/gemma2-2B-thinking-reasoning-model-V1`
+
+---
+
+## Trustworthiness Evaluation Summary
+
+This project evaluates the trustworthiness of large language models based on the following principles:
+
+###  Fairness and Bias
+- Evaluated using the **Stereoset** dataset.
+- Comparison across base model and fine-tuned variants showed that reasoning-enhanced models reduced stereotypical bias in generated outputs.
+
+###  Robustness and Reliability
+- Evaluated using the **ServiceNow V1** dataset.
+- Fine-tuned models demonstrated improved consistency and correctness across diverse logical reasoning tasks and unseen inputs.
+
+###  Key Insights
+- Fine-tuning with reasoning-oriented datasets improves both **code understanding** and **bias mitigation**.
+- A 1:1 ratio of reasoning and coding prompts yielded the most balanced performance improvements.
+
+---
+
+##  Results
+
+- All evaluation outputs, including accuracy metrics and logs, are saved in the `results/` folder in each model-specific branch.
+- Additional comparative outputs can be found in the notebook: `Evaluation_and_testing_modified.ipynb`.
+
+---
+
+##  CLI Usage Example
+
+While Jupyter notebooks are used for structured evaluation, you may also run quick model inference via a script:
+
+```bash
+python infer.py --model navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1 --prompt "Explain recursion in Python."
+```
+
+Make sure `infer.py` loads the model via `transformers` and wraps `PeftModel` for adapters.
+
+---
+
+##  Reproducibility
+
+- All training used fixed random seed `42` to ensure reproducibility.
+- Hyperparameters and setup metadata are stored in `training_args.bin`.
+- We recommend running notebooks in the same sequence and environment for consistent results.
 ---
 
 ## Base Model Details
