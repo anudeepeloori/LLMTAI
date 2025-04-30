@@ -1,7 +1,7 @@
 ---
-base_model: Qwen/Qwen2.5-1.5B-Instruct
+base_model: google/gemma-2b-it
 library_name: transformers
-model_name: Qwen2.5-1.5B-thinking-reasoning-model-V1
+model_name: gemma2-2B-thinking-reasoning-model-V1
 tags:
 - generated_from_trainer
 - trl
@@ -9,9 +9,9 @@ tags:
 licence: license
 ---
 
-# Model Card for Qwen2.5-1.5B-thinking-reasoning-model-V1
+# Model Card for gemma2-2B-thinking-reasoning-model-V1
 
-This model is a fine-tuned version of [Qwen/Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct).
+This model is a fine-tuned version of [google/gemma-2b-it](https://huggingface.co/google/gemma-2b-it).
 It has been trained using [TRL](https://github.com/huggingface/trl).
 
 ## Quick start
@@ -20,7 +20,7 @@ It has been trained using [TRL](https://github.com/huggingface/trl).
 from transformers import pipeline
 
 question = "If you had a time machine, but could only go to the past or the future once and never return, which would you choose and why?"
-generator = pipeline("text-generation", model="navaneeth45/Qwen2.5-1.5B-thinking-reasoning-model-V1", device="cuda")
+generator = pipeline("text-generation", model="Sujithanumala/gemma2-2B-thinking-reasoning-model-V1", device="cuda")
 output = generator([{"role": "user", "content": question}], max_new_tokens=128, return_full_text=False)[0]
 print(output["generated_text"])
 ```
@@ -34,11 +34,11 @@ This model was trained with SFT.
 
 ### Framework versions
 
-- TRL: 0.15.2
-- Transformers: 4.48.3
-- Pytorch: 2.5.1+cu124
-- Datasets: 3.3.2
-- Tokenizers: 0.21.0
+- TRL: 0.16.0
+- Transformers: 4.50.2
+- Pytorch: 2.6.0+cu124
+- Datasets: 3.5.0
+- Tokenizers: 0.21.1
 
 ## Citations
 
