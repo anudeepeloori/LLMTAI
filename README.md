@@ -68,7 +68,7 @@ This structure ensures clean isolation between different model versions and make
 
 ---
 
-## 🔧 How the Model Was Developed
+## How the Model Was Developed
 
 Each of the three models in this repository was fine-tuned using the LoRA (Low-Rank Adaptation) method on top of an open-source base model. The key stages were:
 
