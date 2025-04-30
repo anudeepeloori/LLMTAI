@@ -142,7 +142,6 @@ This project evaluates the trustworthiness of large language models based on the
 
 ##  Results
 
-- All evaluation outputs, including accuracy metrics and logs, are saved in the `results/` folder in each model-specific branch.
 - Additional comparative outputs can be found in the notebook: `Evaluation_and_testing_modified.ipynb`.
 
 ---
