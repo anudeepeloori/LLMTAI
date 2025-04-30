@@ -1,36 +1,33 @@
+
+# gemma2-2B-thinking-reasoning-model-V1
+
+This folder holds the LoRA adapter for the Gemma2 2-billion-parameter model, tuned on reasoning datasets.
 ---
 base_model: google/gemma-2b-it
 library_name: transformers
 model_name: gemma2-2B-thinking-reasoning-model-V1
-tags:
-- generated_from_trainer
-- trl
-- sft
-licence: license
+
 ---
-
-# Model Card for gemma2-2B-thinking-reasoning-model-V1
-
-This model is a fine-tuned version of [google/gemma-2b-it](https://huggingface.co/google/gemma-2b-it).
-It has been trained using [TRL](https://github.com/huggingface/trl).
-
-## Quick start
-
-```python
-from transformers import pipeline
-
-question = "If you had a time machine, but could only go to the past or the future once and never return, which would you choose and why?"
-generator = pipeline("text-generation", model="Sujithanumala/gemma2-2B-thinking-reasoning-model-V1", device="cuda")
-output = generator([{"role": "user", "content": question}], max_new_tokens=128, return_full_text=False)[0]
-print(output["generated_text"])
-```
 
 ## Training procedure
 
- 
-
-
 This model was trained with SFT.
+
+## Contents
+
+- **adapter_config.json, adapter_model.safetensors**  
+- **added_tokens.json**  
+- **special_tokens_map.json, tokenizer*_*.json**  
+- **training_args.bin**  
+- **runs/** (training logs & checkpoints)
+
+## What’s Happening Here
+
+- **Base**: Gemma2-2B, a compact LLM optimized for low-resource inference.
+- **Objective**: Improve its chain-of-thought (CoT) performance on logic puzzles.
+- **Data**: Standard CoT datasets plus synthetic tasks we generated via templating.
+
+
 
 ### Framework versions
 
@@ -41,8 +38,6 @@ This model was trained with SFT.
 - Tokenizers: 0.21.1
 
 ## Citations
-
-
 
 Cite TRL as:
     
