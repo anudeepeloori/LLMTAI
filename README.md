@@ -1,34 +1,58 @@
-# code-reason-tuned-llama-3-1-8b
 
-This folder contains a LoRA adapter fine-tuned on the LLaMA-3 (8B) base model for code reasoning tasks.
+# code-reason-tuned-llama-3.1-8b
+
+Fine-tuned LoRA adapter for Meta's LLaMA 3.1 8B model, designed to integrate coding and reasoning tasks.
+
+---
+
+## Model Information
+ 
+- **Fine-Tuned Model**: `navaneeth45/code-reason-tuned-llama-3.1-8b`  
+- **Library**: `transformers`
+
+---
 
 ## Contents
 
-- **adapter_config.json**  
-  LoRA hyperparameters (rank, alpha, dropout, etc.)
+- `adapter_config.json`, `adapter_model.safetensors`  
+- `tokenizer_config.json`, `tokenizer.json`, `vocab.json`  
+- `added_tokens.json`, `merges.txt`, `special_tokens_map.json`  
+- `training_args.bin`
 
-- **adapter_model.safetensors**  
-  Learned adapter weights.
+---
 
-- **special_tokens_map.json, tokenizer_config.json, tokenizer.json**  
-  Any added tokens or tokenizer overrides used during fine-tuning.
+## Overview
 
-- **training_args.bin**  
-  Serialized training arguments (batch size, learning rate, epochs, etc.)
+- **LoRA Adapter**: Injects additional parameters to enhance the model’s reasoning through code.
+- **Training Focus**: Mixed dataset of reasoning questions and coding problems in a 1:1 ratio.
+- **Motivation**: Research shows that when models are trained to reason, their coding performance also improves significantly.
+- **Use Case**: Ideal for tasks involving logic-driven code understanding, explanation, and debugging.
 
+---
 
-## What’s Happening Here
+## Training Procedure
 
-1. **Fine-tuning**:  
-   We applied LoRA to inject a lightweight adapter into the frozen LLaMA-3 base. Training data consisted of code+chain-of-thought examples (e.g. Python puzzles with step-by-step solutions).
+Supervised fine-tuning (SFT) with LoRA adapters on a hybrid dataset combining reasoning and programming problems.
 
-2. **Special Tokens**:  
-   We added markers like '<Think>' so the model can learn to separate reasoning steps from code snippets.
+### Framework Versions
 
-3. **Output**:  
-   Checkpoints live under `runs/`. Each run directory has:
-   - `pytorch_model.bin` (adapter only)  
-   - `trainer_state.json` (loss curves, hyperparameters)  
-   - `eval_results.json` (if you ran evaluation during training)
+- TRL: 0.15.2  
+- Transformers: 4.48.3  
+- PyTorch: 2.5.1+cu124  
+- Datasets: 3.3.2  
+- Tokenizers: 0.21.0
 
+---
 
+## Citation
+
+```bibtex
+@misc{vonwerra2022trl,
+  title        = {{TRL: Transformer Reinforcement Learning}},
+  author       = {Leandro von Werra and Younes Belkada and Lewis Tunstall and Edward Beeching and Tristan Thrush and Nathan Lambert and Shengyi Huang and Kashif Rasul and Quentin Gallouédec},
+  year         = 2020,
+  journal      = {GitHub repository},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/huggingface/trl}}
+}
+```
