@@ -50,6 +50,25 @@ This project aims to fine-tune an open-source LLM on datasets that combine codin
 
 ---
 
+## Accessing Fine-Tuned Models via GitHub Branches
+
+The repository is organized using branches, each corresponding to a specific fine-tuned model:
+
+- `main`: General project files and evaluation notebooks
+- `Qwen2.5-1.5B-thinking-reasoning-model-V1`: Contains the Qwen-based reasoning model
+- `code-reason-tuned-llama-3.1-8b`: Contains the LLaMA 3.1 8B fine-tuned for reasoning and coding
+- `gemma2-2B-thinking-reasoning-model-V1`: Contains the Gemma2-2B reasoning fine-tuned model
+
+To explore each model:
+1. Navigate to the repository on GitHub.
+2. Use the **"Branch"** dropdown menu.
+3. Select the respective branch to view that model’s files and configurations.
+
+This structure ensures clean isolation between different model versions and makes the repository easy to explore and maintain so we did in this way.
+
+
+---
+
 ## Base Model Details
 
 - **Base Model**: `Qwen/Qwen2.5-1.5B-Instruct`
