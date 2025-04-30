@@ -134,7 +134,7 @@ This project evaluates the trustworthiness of large language models based on the
 - Evaluated using the **ServiceNow V1** dataset.
 - Fine-tuned models demonstrated improved consistency and correctness across diverse logical reasoning tasks and unseen inputs.
 
-###  Key Insights
+###  Insights
 - Fine-tuning with reasoning-oriented datasets improves both **code understanding** and **bias mitigation**.
 - A 1:1 ratio of reasoning and coding prompts yielded the most balanced performance improvements.
 
