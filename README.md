@@ -16,8 +16,6 @@ This folder contains a LoRA adapter fine-tuned on the LLaMA-3 (8B) base model fo
 - **training_args.bin**  
   Serialized training arguments (batch size, learning rate, epochs, etc.)
 
-- **runs/**  
-  Subfolders for each training run, containing logs, checkpoints, and metrics.
 
 ## What’s Happening Here
 
