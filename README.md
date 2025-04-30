@@ -14,7 +14,6 @@ model_name: Qwen2.5-1.5B-thinking-reasoning-model-V1
 - **added_tokens.json, merges.txt, special_tokens_map.json**  
 - **tokenizer_config.json, tokenizer.json, vocab.json**  
 - **training_args.bin**  
-- **runs/**
 
 ## What’s Happening Here
 
