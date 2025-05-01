@@ -141,7 +141,7 @@ This project evaluates the trustworthiness of large language models based on the
 ---
 
 ##  Results
-
+- Check Evaluation_and_testing.ipynb for evaluation metrics or Results (Please download and execute if the preview is not available).
 - Additional comparative outputs can be found in the notebook: `Evaluation_and_testing_modified.ipynb`.
 
 ---
